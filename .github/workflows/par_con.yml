@@ -1,0 +1,27 @@
+name: Parameter and condition
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      GREETING: 'HelloCybage'
+      # CAPITALIZE: true
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Print Greeting                   #If condition is true then if will convert the greeting touppercase()
+                                               # else it will the greeting
+        run: |
+          if [ "${{ env.CAPITALIZE }}" == "true" ]; then
+            echo "${{ env.GREETING }}" | awk '{print toupper($0)}' l
+          else
+            echo "${{ env.GREETING }}"
+          fi.
