@@ -11,17 +11,16 @@ jobs:
 
     env:
       GREETING: 'Hello'
-      # CAPITALIZE: true
+      CAPITALIZE: 'true'  # Ensure this is set to a string value
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Print Greeting                   #If condition is true then if will convert the greeting touppercase()
-                                               # else it will the greeting
+      - name: Print Greeting
         run: |
           if [ "${{ env.CAPITALIZE }}" == "true" ]; then
-            echo "${{ env.GREETING }}" | awk '{print toupper($0)}' l
+            echo "${GREETING}" | awk '{print toupper($0)}'
           else
-            echo "${{ env.GREETING }}"
-          fi.
+            echo "${GREETING}"
+          fi
